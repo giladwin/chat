@@ -1,0 +1,41 @@
+﻿<div class="card mt-4">
+  <h4 class="card-header">
+    Enter existing room</h4>
+  <div class="card-body">
+    <h6>
+      Please pick a room from the list below:
+    </h6>
+    <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+    <select #roomNames *ngIf="rooms" (change)="selectRoom(roomNames.value)" [value]="0" class="form-control">
+      <option *ngFor="let room of rooms" value="{{room.name}}">
+        {{room.name}} ({{room.users}} users onilne)
+      </option>
+    </select>
+  </div>
+</div>
+
+<div class="card mt-4">
+  <h4 class="card-header">
+    Create a new room
+  </h4>
+  <div class="card-body">
+    <form [formGroup]="createRoomForm" (ngSubmit)="createRoom()">
+      <div class="form-group">
+        <label for="roomName">
+          Room name:
+        </label>
+        <input type="text" formControlName="roomName" class="form-control" [ngClass]="{ 'is-invalid': createRoomSubmitted && createRoomControls.roomName.errors }" />
+        <div *ngIf="createRoomSubmitted && createRoomControls.roomName.errors" class="invalid-feedback">
+          <div *ngIf="createRoomControls.roomName.errors.required">
+            Room name is required
+          </div>
+        </div>
+      </div>
+      <button [disabled]="loading" class="btn btn-primary">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        Create room
+      </button>
+      <div *ngIf="createRoomError" class="alert alert-danger mt-3 mb-0">{{createRoomError}}</div>
+    </form>
+  </div>
+</div>

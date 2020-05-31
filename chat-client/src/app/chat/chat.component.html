@@ -1,0 +1,41 @@
+﻿<div class="card mt-4">
+  <h4 *ngIf="currentRoomName" class="card-header">
+    Room name: {{currentRoomName}}
+  </h4>
+  <div class="card-body">
+    <h6 *ngIf="currentRoomName && !usersInRoom || !usersInRoom.length" >
+      No online users
+    </h6>
+    <h6 *ngIf="currentRoomName && usersInRoom && usersInRoom.length === 1" >
+      1 user online:
+    </h6>
+    <h6 *ngIf="currentRoomName && usersInRoom && usersInRoom.length > 1">
+      {{usersInRoom.length}} users online:
+    </h6>
+    <select  *ngIf="usersInRoom && usersInRoom.length"  >
+      <option *ngFor="let user of usersInRoom" value="{{room}}">
+        {{user}}
+      </option>
+    </select>
+  </div>
+  <option *ngFor="let room of rooms" value="{{room.name}}">
+    {{room.name}} ({{room.users}} users onilne)
+  </option>
+  <div class="card-body">
+    <div #messages style="overflow-y: scroll; height:400px;" class="form-control">
+      <div  *ngFor="let msg of messageList" >
+        <p *ngIf="!msg.username" style="color: #429aff; font-weight: bold">{{msg.ts + '\t\t' + msg.text}}</p>
+        <p *ngIf="msg.username"><b>{{msg.ts + ' ' + msg.username + ':'}}</b>{{msg.text}}</p>
+      </div>
+    </div>
+    <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage(); sendMessageForm.reset() ">
+      <div class="form-group">
+        <br>
+        <input type="text" formControlName="message" class="form-control"  />
+      </div>
+      <button [disabled]="loading" class="btn btn-primary" *ngIf="currentRoomName">
+        {{'Send message to room ' + currentRoomName}}
+      </button>
+    </form>
+  </div>
+</div>

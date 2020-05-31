@@ -1,0 +1,22 @@
+{
+    "env": {
+        "es6": true,
+        "node": true,
+        "mocha": true
+    },
+    "plugins": [
+        "mocha"
+    ],
+    "extends": "google",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 2018
+    },
+    "rules": {
+        "camelcase" : "warn",
+        "max-len" : ["error", {"code" : 120, "ignoreComments": true, "ignoreTemplateLiterals": true }],
+        "require-jsdoc" : "off",
+        "brace-style" : "warn",
+        "prefer-rest-params" : "warn"
+    }
+}

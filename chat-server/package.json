@@ -1,0 +1,30 @@
+{
+  "name": "chat-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha test/*.js",
+    "build": "npm build",
+    "lint": "eslint -f table  .",
+    "lint:fix": "eslint --fix -f table ."
+  },
+  "dependencies": {
+    "express": "~4.16.1",
+    "eslint": "^6.1.0",
+    "body-parser": "^1.19.0",
+    "mongodb": "^3.5.7",
+    "bunyan": "^1.8.12",
+    "socket.io": "^2.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "cors": "^2.8.5",
+    "email-validator": "^2.0.4"
+  },
+  "devDependencies": {
+    "eslint-config-google": "^0.9.1",
+    "eslint-plugin-mocha": "^6.0.0",
+    "mocha": "^6.2.0",
+    "supertest": "^4.0.2",
+    "should": "^13.2.3"
+  }
+}
