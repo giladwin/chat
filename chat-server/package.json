@@ -10,7 +10,7 @@
     "lint:fix": "eslint --fix -f table ."
   },
   "dependencies": {
-    "express": "~4.16.1",
+    "express": "~4.17.3",
     "eslint": "^6.1.0",
     "body-parser": "^1.19.0",
     "mongodb": "^3.5.7",
